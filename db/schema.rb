@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20160619164419) do
   create_table "urls", force: :cascade do |t|
     t.string   "title"
     t.string   "url"
-    t.string   "privacy"
+    t.integer  "privacy"
     t.string   "current_hash"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
