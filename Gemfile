@@ -27,8 +27,10 @@ end
 
 group :development do
     gem 'web-console', '~> 2.0'
+    gem 'libnotify'
 end
 
 group :test do
    gem 'capybara'
+   gem 'shoulda-matchers', require: false
 end

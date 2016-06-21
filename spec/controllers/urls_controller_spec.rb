@@ -2,28 +2,22 @@ require 'rails_helper'
 
 describe UrlsController do
   describe "GET index" do
-    it "renders index template" do
-      get :index
-      expect(response).to render_template(:index)
-    end
+    before { get :index }
+
+    it { should render_template(:index) }
 
     it "assigns urls to template" do
       url = FactoryGirl.create(:public_url)
-      get :index
       expect(assigns(:urls)).to eq([url])
     end
   end
 
   describe "GET show" do
-    it "renders show template" do
-      url = FactoryGirl.create(:public_url)
-      get :show, id: url.id
-      expect(response).to render_template(:show)
-    end
+    let(:url) { FactoryGirl.create(:public_url) }
+    before { get :show, id: url }
+    it { should render_template(:show) }
 
     it "assigns url to template" do
-      url = FactoryGirl.create(:public_url)
-      get :show, id:url.id
       expect(assigns(:url)).to eq(url)
     end
   end
@@ -41,11 +35,17 @@ describe UrlsController do
   end
 
   describe "POST create" do
+    let(:url_attr) { FactoryGirl.attributes_for(:public_url) }
+
     it "create url" do
-      url = FactoryGirl.attributes_for(:public_url)
       expect {
-        post :create, url: url
+        post :create, url: url_attr
       }.to change(Url, :count).by(1)
+    end
+
+    it "redirect to urls" do
+      post :create, url: url_attr
+      expect(response).to redirect_to(url_path(assigns(:url)))
     end
   end
 end

@@ -11,7 +11,7 @@ class UrlsController < ApplicationController
   def create
     @url = Url.new(url_params)
     if @url.save
-      redirect_to root_path, notice:'Tracking url has been create'
+      redirect_to url_url(@url), notice:'Tracking url has been create'
     else
       render :new
     end
