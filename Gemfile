@@ -21,12 +21,12 @@ group :development, :test do
     gem 'rspec-rails'
     gem 'factory_girl_rails'
     gem 'spring-commands-rspec'
+    gem 'spring'
+    gem 'guard-rspec', require: false
 end
 
 group :development do
     gem 'web-console', '~> 2.0'
-    gem 'spring'
-    gem 'guard-rspec', require: false
 end
 
 group :test do

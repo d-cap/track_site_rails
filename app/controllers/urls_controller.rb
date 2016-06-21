@@ -9,10 +9,19 @@ class UrlsController < ApplicationController
   end
 
   def create
-    redirect_to root_path, notice:'Tracking url has been create'
+    @url = Url.new(url_params)
+    if @url.save
+      redirect_to root_path, notice:'Tracking url has been create'
+    else
+      render :new
+    end
   end
 
   def show
     @url = Url.find(params[:id])
+  end
+private
+  def url_params
+    params.require(:url).permit(:title, :url, :privacy)
   end
 end

@@ -39,4 +39,13 @@ describe UrlsController do
       expect(assigns(:url)).to be_a_new(Url)
     end
   end
+
+  describe "POST create" do
+    it "create url" do
+      url = FactoryGirl.attributes_for(:public_url)
+      expect {
+        post :create, url: url
+      }.to change(Url, :count).by(1)
+    end
+  end
 end
