@@ -1,5 +1,5 @@
 class UrlsController < ApplicationController
-  before_action :load_url, only: [ :show, :edit, :update ]
+  before_action :load_url, only: [:show, :edit, :update]
 
   def index
     @urls = Url.all
@@ -12,7 +12,7 @@ class UrlsController < ApplicationController
   def create
     @url = Url.new(url_params)
     if @url.save
-      redirect_to url_url(@url), notice:'Tracking url has been create'
+      redirect_to url_url(@url), notice: 'Tracking url has been create'
     else
       render :new
     end
@@ -26,13 +26,14 @@ class UrlsController < ApplicationController
 
   def update
     if @url.update_attributes(url_params)
-      redirect_to url_url(@url), notice:'Tracking url has been create'
+      redirect_to url_url(@url), notice: 'Tracking url has been create'
     else
       render :edit
     end
   end
 
-private
+  private
+
   def url_params
     params.require(:url).permit(:title, :url, :privacy)
   end

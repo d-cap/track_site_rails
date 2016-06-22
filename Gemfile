@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 gem 'rails', '4.2.6'
 gem 'sqlite3'
 gem 'sass-rails', '~> 5.0'
@@ -17,20 +16,20 @@ gem 'semantic-ui-sass'
 gem 'simple_form'
 
 group :development, :test do
-    gem 'byebug'
-    gem 'rspec-rails'
-    gem 'factory_girl_rails'
-    gem 'spring-commands-rspec'
-    gem 'spring'
-    gem 'guard-rspec', require: false
+  gem 'byebug'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'spring-commands-rspec'
+  gem 'spring'
+  gem 'guard-rspec', require: false
 end
 
 group :development do
-    gem 'web-console', '~> 2.0'
-    gem 'libnotify'
+  gem 'web-console', '~> 2.0'
+  gem 'libnotify'
 end
 
 group :test do
-   gem 'capybara'
-   gem 'shoulda-matchers', require: false
+  gem 'capybara'
+  gem 'shoulda-matchers', require: false
 end

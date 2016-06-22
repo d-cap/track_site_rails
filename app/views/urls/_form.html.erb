@@ -2,7 +2,7 @@
   <%= render "shared/errors", target: @url %>
   <%= f.input :title %>
   <%= f.input :url %>
-  <%= f.input :privacy, collection: Url.get_privacies, as: :radio_buttons %>
+  <%= f.input :privacy, collection: Url.privacies_map, as: :radio_buttons %>
 
   <%= f.submit 'Create tracking url' %>
 <% end %>
