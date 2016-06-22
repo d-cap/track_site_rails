@@ -23,21 +23,30 @@ describe UrlsController do
   end
 
   describe "GET new" do
-    it "renders new template" do
-      get :new
-      expect(response).to render_template(:new)
-    end
+    before { get :new }
+
+    it { should render_template(:new) }
 
     it "assigns new url to template" do
-      get :new
       expect(assigns(:url)).to be_a_new(Url)
+    end
+  end
+
+  describe "GET edit" do
+    let(:url) { FactoryGirl.create(:public_url) }
+    before { get :edit, id: url }
+
+    it { should render_template(:edit) }
+
+    it "assigns new url to template" do
+      expect(assigns(:url)).to eq(url)
     end
   end
 
   describe "POST create" do
     let(:url_attr) { FactoryGirl.attributes_for(:public_url) }
 
-    it "create url" do
+    it "creates url" do
       expect {
         post :create, url: url_attr
       }.to change(Url, :count).by(1)
@@ -46,6 +55,15 @@ describe UrlsController do
     it "redirect to urls" do
       post :create, url: url_attr
       expect(response).to redirect_to(url_path(assigns(:url)))
+    end
+  end
+
+  describe "PATCH update" do
+    let(:url) { FactoryGirl.create(:public_url) }
+    it "updates url" do
+      patch :update, id: url, url: FactoryGirl.attributes_for(:public_url, title: "New url title")
+      url.reload
+      expect(url.title).to eq('New url title')
     end
   end
 end

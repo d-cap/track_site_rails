@@ -1,0 +1,8 @@
+<%= simple_form_for(@url, html: {class: 'ui form'}) do |f| %>
+  <%= render "shared/errors", target: @url %>
+  <%= f.input :title %>
+  <%= f.input :url %>
+  <%= f.input :privacy, collection: Url.get_privacies, as: :radio_buttons %>
+
+  <%= f.submit 'Create tracking url' %>
+<% end %>

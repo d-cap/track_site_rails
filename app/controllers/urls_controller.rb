@@ -1,4 +1,5 @@
 class UrlsController < ApplicationController
+  before_action :load_url, only: [ :show, :edit, :update ]
 
   def index
     @urls = Url.all
@@ -18,10 +19,25 @@ class UrlsController < ApplicationController
   end
 
   def show
-    @url = Url.find(params[:id])
   end
+
+  def edit
+  end
+
+  def update
+    if @url.update_attributes(url_params)
+      redirect_to url_url(@url), notice:'Tracking url has been create'
+    else
+      render :edit
+    end
+  end
+
 private
   def url_params
     params.require(:url).permit(:title, :url, :privacy)
+  end
+
+  def load_url
+    @url = Url.find(params[:id])
   end
 end
